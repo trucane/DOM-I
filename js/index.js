@@ -37,44 +37,31 @@ const siteContent = {
   },
 };
 
-// Example: Update the img src for the logo
+// IMages
+let logo = document.querySelector("#logo-img");
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
+
+let ctaImg = document.querySelector("#cta-img");
+ctaImg.setAttribute('src', siteContent["cta"]["img-src"]);
+
+let mhb = document.querySelector('#middle-img')
+mhb.setAttribute('src', siteContent['main-content']['middle-img-src']);
+
+
+//Nav Area
 
 
 const navlist = document.querySelectorAll('.container header nav a');
+navlist.forEach( (items, i) =>{
+  items.textContent = siteContent['nav'][`nav-item-${i + 1}`];
+})
+
+
+
 const cta = document.querySelector('.cta');
-//const mainContent = document.querySelector('.main-content');
-
-//navlist.forEach(x => x.style.color = 'green');
-
-let addNav1 = document.createElement('a');
-addNav1.textContent = "Home";
-let ded= document.querySelector('header nav').prepend(addNav1);
-
-let addNav2 = document.createElement('a');
-addNav2.textContent = "Blog";
-let re= document.querySelector('header nav').appendChild(addNav2);
-
-
-
-
-
-
-
-navlist[0].textContent = siteContent['nav']['nav-item-1'];
-navlist[1].textContent = siteContent['nav']['nav-item-2'];
-navlist[2].textContent = siteContent['nav']['nav-item-3'];
-navlist[3].textContent = siteContent['nav']['nav-item-4'];
-navlist[4].textContent = siteContent['nav']['nav-item-5'];
-navlist[5].textContent = siteContent['nav']['nav-item-6'];
-
-navlist.forEach(x => x.style.color = 'green');
-
-let logo = document.querySelector("#logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
-
 cta.querySelector('h1').textContent = siteContent['cta']['h1'];
 
-
+//target button
 let ctaButton = cta.querySelector('button');
 
 
@@ -83,19 +70,13 @@ ctaButton.style.backgroundColor = 'green';
 ctaButton.style.color = 'white';
 
 
-let ctaImg = document.querySelector("#cta-img");
-ctaImg.setAttribute('src', siteContent["cta"]["img-src"])
 
 let mainContent = document.querySelectorAll('div .text-content');
-
-let mhb = document.querySelector('#middle-img')
-mhb.setAttribute('src', siteContent['main-content']['middle-img-src']);
-
 mainContent[0].childNodes[1].textContent = siteContent['main-content']['features-h4'];
 mainContent[0].childNodes[3].textContent = siteContent['main-content']['features-content'];
 
-mainContent[1].childNodes[1].textContent = siteContent['main-content']['about-h4'];
-mainContent[1].childNodes[3].textContent = siteContent['main-content']['about-content'];
+mainContent[1].children[0].textContent = siteContent['main-content']['about-h4'];
+mainContent[1].children[1].textContent = siteContent['main-content']['about-content'];
 
 mainContent[2].childNodes[1].textContent = siteContent['main-content']['services-h4'];
 mainContent[2].childNodes[3].textContent = siteContent['main-content']['services-content'];
@@ -116,3 +97,29 @@ contact.childNodes[7].textContent = siteContent['contact']['email'];
 
 let footer = document.querySelector('footer');
 footer.querySelector('p').textContent = siteContent['footer']['copyright'];
+
+
+
+
+//Stretch Goals
+//      Nav Area Create Navs
+let addNav2 = document.createElement('a');
+addNav2.textContent = "Blog";
+let re= document.querySelector('header nav').appendChild(addNav2);
+
+
+
+let addNav1 = document.createElement('a');
+addNav1.textContent = "Home";
+let ded= document.querySelector('header nav').prepend(addNav1);
+
+let newnavlist = document.querySelectorAll('.container header nav a').forEach(x => x.style.color = 'green');
+
+//change button on click event
+ctaButton.addEventListener('click',  changeColor);
+function changeColor(){
+  let targetColor = this.style;
+    targetColor.backgroundColor == 'green' ?
+      targetColor.cssText += 'background-color:red; color:orange;' :
+         targetColor.cssText += 'background-color:green; color:white;'
+}
