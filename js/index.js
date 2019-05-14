@@ -37,6 +37,89 @@ const siteContent = {
   },
 };
 
-// Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+// IMages
+let logo = document.querySelector("#logo-img");
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
+
+let ctaImg = document.querySelector("#cta-img");
+ctaImg.setAttribute('src', siteContent["cta"]["img-src"]);
+
+let mhb = document.querySelector('#middle-img')
+mhb.setAttribute('src', siteContent['main-content']['middle-img-src']);
+
+
+//Nav Area
+
+
+const navlist = document.querySelectorAll('.container header nav a');
+navlist.forEach( (items, i) =>{
+  items.textContent = siteContent['nav'][`nav-item-${i + 1}`];
+})
+
+
+
+const cta = document.querySelector('.cta');
+cta.querySelector('h1').textContent = siteContent['cta']['h1'];
+
+//target button
+let ctaButton = cta.querySelector('button');
+
+
+ctaButton.textContent = siteContent['cta']['button'];
+ctaButton.style.backgroundColor = 'green';
+ctaButton.style.color = 'white';
+
+
+
+let mainContent = document.querySelectorAll('div .text-content');
+mainContent[0].childNodes[1].textContent = siteContent['main-content']['features-h4'];
+mainContent[0].childNodes[3].textContent = siteContent['main-content']['features-content'];
+
+mainContent[1].children[0].textContent = siteContent['main-content']['about-h4'];
+mainContent[1].children[1].textContent = siteContent['main-content']['about-content'];
+
+mainContent[2].childNodes[1].textContent = siteContent['main-content']['services-h4'];
+mainContent[2].childNodes[3].textContent = siteContent['main-content']['services-content'];
+
+mainContent[3].childNodes[1].textContent = siteContent['main-content']['product-h4'];
+mainContent[3].childNodes[3].textContent = siteContent['main-content']['product-content'];
+
+mainContent[4].childNodes[1].textContent = siteContent['main-content']['vision-h4'];
+mainContent[4].childNodes[3].textContent = siteContent['main-content']['vision-content'];
+
+
+
+let contact = document.querySelector('.contact');
+contact.childNodes[1].textContent = siteContent['contact']['contact-h4'];
+contact.childNodes[3].textContent = siteContent['contact']['address'];
+contact.childNodes[5].textContent = siteContent['contact']['phone'];
+contact.childNodes[7].textContent = siteContent['contact']['email'];
+
+let footer = document.querySelector('footer');
+footer.querySelector('p').textContent = siteContent['footer']['copyright'];
+
+
+
+
+//Stretch Goals
+//      Nav Area Create Navs
+let addNav2 = document.createElement('a');
+addNav2.textContent = "Blog";
+let re= document.querySelector('header nav').appendChild(addNav2);
+
+
+
+let addNav1 = document.createElement('a');
+addNav1.textContent = "Home";
+let ded= document.querySelector('header nav').prepend(addNav1);
+
+let newnavlist = document.querySelectorAll('.container header nav a').forEach(x => x.style.color = 'green');
+
+//change button on click event
+ctaButton.addEventListener('click',  changeColor);
+function changeColor(){
+  let targetColor = this.style;
+    targetColor.backgroundColor == 'green' ?
+      targetColor.cssText += 'background-color:red; color:orange;' :
+         targetColor.cssText += 'background-color:green; color:white;'
+}
